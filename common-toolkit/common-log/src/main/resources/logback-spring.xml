@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- scan 自动刷新，修改target中的logback.xml才会生效
+     debug=true 打印context上下文的加载情况 -->
+<configuration scan="true" scanPeriod="10 seconds" debug="false">
+<!--               xmlns="http://ch.qos.logback/xml/ns/logback"-->
+<!--               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--               xsi:schemaLocation="http://ch.qos.logback/xml/ns/logback-->
+<!--               https://raw.githubusercontent.com/enricopulatzo/logback-XSD/master/src/main/xsd/logback.xsd"-->
+<!--               >-->
+
+    <contextName>logback</contextName>
+    <!-- 读取spring配置 -->
+    <springProperty name="serviceName" source="spring.application.name" defaultValue="unknown"/>
+    <!-- 配置变量 -->
+    <property name="logPath" value="logs/${serviceName}"/>
+    <!-- date日期 level日志级别 thread线程名称 %-50logger{5}补全50字符 tid整合sw logger记录器名称 class类名 line行数 msg日志信息 n换行 -->
+    <property name="encoderPattern" value="%date{yyyy-MM-dd HH:mm:ss} [%level] [%thread] [%tid] [%class{5}:%line] : %msg%n"/>
+    <!-- 配置时间策略及文件名 /:将自动转为目录 如：yyyy-MM/dd -->
+    <property name="fileNamePattern" value="log_%d{yyyy-MM-dd}_%i.log"/>
+
+    <!-- 附加器 日志输出 -->
+    <!-- 控制台附加器 整合skywalking -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 配置编码器 -->
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.TraceIdPatternLogbackLayout">
+                <!-- 配置模板 -->
+                <pattern>${encoderPattern}</pattern>
+            </layout>
+        </encoder>
+        <!-- 配置过滤器 DENY不输出 ACCEPT输出 NEUTRAL由下行过滤器决定
+                级别过滤器 LevelFilter ==匹配
+                阈值过滤器 ThresholdFilter >=匹配 -->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+            <!-- LevelFilter 参数 -->
+<!--            <onMatch>ACCEPT</onMatch>-->
+<!--            <onMismatch>DENY</onMismatch>-->
+        </filter>
+    </appender>
+
+<!--    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        &lt;!&ndash; 配置编码器 &ndash;&gt;-->
+<!--        <encoder>-->
+<!--            &lt;!&ndash; 配置模板 &ndash;&gt;-->
+<!--            <pattern>${encoderPattern}</pattern>-->
+<!--        </encoder>-->
+<!--        &lt;!&ndash; 配置过滤器 DENY不输出 ACCEPT输出 NEUTRAL由下行过滤器决定-->
+<!--                级别过滤器 LevelFilter ==匹配-->
+<!--                阈值过滤器 ThresholdFilter >=匹配 &ndash;&gt;-->
+<!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+<!--            <level>DEBUG</level>-->
+<!--            &lt;!&ndash; LevelFilter 参数 &ndash;&gt;-->
+<!--            &lt;!&ndash;            <onMatch>ACCEPT</onMatch>&ndash;&gt;-->
+<!--            &lt;!&ndash;            <onMismatch>DENY</onMismatch>&ndash;&gt;-->
+<!--        </filter>-->
+<!--    </appender>-->
+
+    <!-- 整合skywalking grpc附加器 -->
+    <appender name="GRPC_LOG" class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.log.GRPCLogClientAppender">
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.mdc.TraceIdMDCPatternLogbackLayout">
+                <pattern>${encoderPattern}</pattern>
+            </layout>
+        </encoder>
+    </appender>
+
+    <!-- 文件附加器 FileAppender 只能生成一个文件 -->
+    <!-- 滚动文件附加器 -->
+    <appender name="INFO_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>${encoderPattern}</pattern>
+        </encoder>
+        <!-- 是否追加打印 -->
+        <append>true</append>
+        <!-- 设置工作日志文件名 -->
+        <file>${logPath}/info/work_log.log</file>
+        <!-- 配置滚动策略
+             基于时间 TimeBasedRollingPolicy
+             基于大小和时间 SizeAndTimeBasedRollingPolicy -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${logPath}/info/${fileNamePattern}</fileNamePattern>
+            <!-- 设置最近n天的文件，超过则删除旧文件 -->
+            <maxHistory>7</maxHistory>
+            <!-- 设置每个文件的大小，超过则再创建一个新的 %i -->
+            <maxFileSize>50MB</maxFileSize>
+            <!-- 设置总文件大小，超过则删除旧文件 -->
+            <totalSizeCap>5GB</totalSizeCap>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+    <appender name="ERROR_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>${encoderPattern}</pattern>
+        </encoder>
+        <append>true</append>
+        <file>${logPath}/error/work_log.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${logPath}/error/${fileNamePattern}</fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <maxFileSize>50MB</maxFileSize>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+
+    <appender name="DEBUG_LOG_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>${encoderPattern}</pattern>
+        </encoder>
+        <append>true</append>
+        <file>${logPath}/debug/work_log.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${logPath}/debug/${fileNamePattern}</fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <maxFileSize>50MB</maxFileSize>
+            <totalSizeCap>5GB</totalSizeCap>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+    
+    <!-- 创建记录器 name包名+类名 additivity取消重复打印 -->
+<!--    <logger name="com.stupid.area.controller.DoorController" level="DEBUG" additivity="false">-->
+<!--        <appender-ref ref="CONSOLE"/>-->
+<!--        <appender-ref ref="LOG_FILE"/>-->
+<!--    </logger>-->
+
+    <!-- 配置根记录器 输出级别 TRACE < DEBUG < INFO < WARN < ERROR -->
+    <root level="INFO">
+        <!-- 添加附加器 -->
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="GRPC_LOG"/>
+        <appender-ref ref="INFO_LOG_FILE"/>
+        <appender-ref ref="DEBUG_LOG_FILE"/>
+        <appender-ref ref="ERROR_LOG_FILE"/>
+    </root>
+
+</configuration>

@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.stupid.common.redis.config.RedisConfig,\
+  com.stupid.common.redis.service.RedisService,\
+  com.stupid.common.redis.service.LuaScriptService,\
+  com.stupid.common.redis.config.RedissonConfig

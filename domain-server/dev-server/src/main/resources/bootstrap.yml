@@ -1,0 +1,36 @@
+server:
+  port: 20001
+
+spring:
+  application:
+    name: dev-server
+  cloud:
+    # nacos 配置
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: de8ceea4-d1f1-4855-9ff2-29d4031f1025
+      config:
+        ## dataId: ${spring.application.name}-${spring.profile.active}.${file-extension}
+        ## dev-server-local.yaml
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        namespace: de8ceea4-d1f1-4855-9ff2-29d4031f1025
+#  datasource:
+#    type: com.alibaba.druid.pool.DruidDataSource
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/dev-server?characterEncoding=utf8&useSSL=false&allowMultiQueries=true
+#    username: root
+#    password: root
+#  redis:
+#    host: 127.0.0.1
+#    port: 6379
+#
+## mybatis 扫描映射关系
+#mybatis:
+#  mapper-locations: classpath:mapper/*.xml
+#
+## logback 配置
+#logging:
+#  config:
+#    classpath: logback-spring.xml

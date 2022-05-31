@@ -1,0 +1,20 @@
+server:
+  port: 20000
+
+spring:
+  application:
+    name: gateway-server
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    # nacos 配置
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: de8ceea4-d1f1-4855-9ff2-29d4031f1025
+      config:
+        ## dataId: ${spring.application.name}-${spring.profile.active}.${file-extension}
+        ## gateway-server-local.yaml
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        namespace: de8ceea4-d1f1-4855-9ff2-29d4031f1025
