@@ -3,7 +3,7 @@ package com.stupid.dev.controller;
 import com.stupid.common.api.core.pojo.ParamValidationGroup;
 import com.stupid.common.api.core.vo.ResponseObject;
 import com.stupid.dev.entity.vo.DoorVO;
-import com.stupid.dev.service.IDoorService;
+import com.stupid.dev.service.IDeviceService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 public class DoorController {
 
     @Autowired
-    private IDoorService doorService;
+    private IDeviceService doorService;
 
     @Autowired
     private ServletWebServerApplicationContext applicationContext;

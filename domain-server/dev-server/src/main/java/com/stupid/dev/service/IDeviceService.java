@@ -3,7 +3,7 @@ package com.stupid.dev.service;
 
 import com.stupid.dev.entity.vo.DoorVO;
 
-public interface IDoorService {
+public interface IDeviceService {
 
     /**
      * 新增门禁机

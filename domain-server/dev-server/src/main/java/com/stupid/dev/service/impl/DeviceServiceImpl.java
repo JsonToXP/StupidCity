@@ -6,7 +6,7 @@ import com.stupid.dev.entity.po.DoorInfo;
 import com.stupid.dev.entity.vo.DoorVO;
 import com.stupid.dev.feign.FeignReposity;
 import com.stupid.dev.infrastructure.toolkit.IBeanConvert;
-import com.stupid.dev.service.IDoorService;
+import com.stupid.dev.service.IDeviceService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.skywalking.apm.toolkit.trace.Tag;
 import org.apache.skywalking.apm.toolkit.trace.Tags;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Slf4j
-public class DoorServiceImpl implements IDoorService {
+public class DeviceServiceImpl implements IDeviceService {
 
     @Autowired
     private DoorRepository doorRepository;
