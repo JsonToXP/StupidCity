@@ -2,8 +2,8 @@ package com.stupid.dev.service.impl;
 
 import com.stupid.common.api.user.vo.UserVO;
 import com.stupid.dev.dao.repository.DoorRepository;
-import com.stupid.dev.entity.po.DoorInfo;
-import com.stupid.dev.entity.vo.DoorVO;
+import com.stupid.dev.entity.door.po.DoorInfo;
+import com.stupid.common.api.dev.vo.DoorVO;
 import com.stupid.dev.feign.FeignReposity;
 import com.stupid.dev.infrastructure.toolkit.IBeanConvert;
 import com.stupid.dev.service.IDeviceService;

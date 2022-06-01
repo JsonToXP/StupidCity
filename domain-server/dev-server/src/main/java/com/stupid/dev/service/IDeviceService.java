@@ -1,7 +1,7 @@
 package com.stupid.dev.service;
 
 
-import com.stupid.dev.entity.vo.DoorVO;
+import com.stupid.common.api.dev.vo.DoorVO;
 
 public interface IDeviceService {
 

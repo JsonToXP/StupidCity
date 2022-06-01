@@ -3,14 +3,12 @@ package com.stupid.dev.dao.repository;
 import com.stupid.common.redis.service.RedisService;
 import com.stupid.dev.dao.mapper.IDoorExtrasMapper;
 import com.stupid.dev.dao.mapper.IDoorInfoMapper;
-import com.stupid.dev.entity.po.DoorInfo;
+import com.stupid.dev.entity.door.po.DoorInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * 门禁机仓库

@@ -1,7 +1,7 @@
 package com.stupid.dev.infrastructure.toolkit;
 
-import com.stupid.dev.entity.po.DoorInfo;
-import com.stupid.dev.entity.vo.DoorVO;
+import com.stupid.dev.entity.door.po.DoorInfo;
+import com.stupid.common.api.dev.vo.DoorVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;

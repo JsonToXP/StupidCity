@@ -1,4 +1,4 @@
-package com.stupid.dev.entity.po;
+package com.stupid.dev.entity.door.po;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

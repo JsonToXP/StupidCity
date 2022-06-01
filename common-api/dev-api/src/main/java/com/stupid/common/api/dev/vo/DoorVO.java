@@ -1,5 +1,4 @@
-package com.stupid.dev.entity.vo;
-
+package com.stupid.common.api.dev.vo;
 import com.stupid.common.api.core.pojo.ParamValidationGroup;
 import lombok.Data;
 

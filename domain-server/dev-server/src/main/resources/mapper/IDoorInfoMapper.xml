@@ -11,7 +11,7 @@
     </update>
 
     <!-- 查询门禁机详情 -->
-    <select id="selectDoorInfoById" resultType="com.stupid.dev.entity.po.DoorInfo">
+    <select id="selectDoorInfoById" resultType="com.stupid.dev.entity.door.po.DoorInfo">
         select id,name,dev_code as devCode,state,active_time as activeTime,create_user as createUser
         from door_info
         where id = #{id}

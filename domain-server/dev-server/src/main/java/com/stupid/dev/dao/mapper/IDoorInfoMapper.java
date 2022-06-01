@@ -1,6 +1,6 @@
 package com.stupid.dev.dao.mapper;
 
-import com.stupid.dev.entity.po.DoorInfo;
+import com.stupid.dev.entity.door.po.DoorInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 

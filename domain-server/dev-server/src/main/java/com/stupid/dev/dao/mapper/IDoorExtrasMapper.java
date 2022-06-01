@@ -1,6 +1,6 @@
 package com.stupid.dev.dao.mapper;
 
-import com.stupid.dev.entity.po.DoorExtras;
+import com.stupid.dev.entity.door.po.DoorExtras;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
