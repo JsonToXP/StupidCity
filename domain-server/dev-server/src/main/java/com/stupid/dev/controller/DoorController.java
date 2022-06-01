@@ -1,6 +1,7 @@
 package com.stupid.dev.controller;
 
 import com.stupid.common.api.core.vo.ResponseObject;
+import com.stupid.dev.entity.door.decorator.DoorHandlerDecorator;
 import com.stupid.dev.entity.door.po.DoorInfo;
 import com.stupid.dev.entity.door.po.KeyIncInfo;
 import com.stupid.common.api.dev.vo.DoorVO;
@@ -31,6 +32,10 @@ public class DoorController {
     @PostMapping("{doorType}/save")
     public ResponseObject<String> saveDoor(@RequestBody DoorVO doorVO,@PathVariable String doorType){
         IDoorService doorHandler = doorStrategy.getDoorHandler(doorType);
+        // 装饰器强化
+        DoorHandlerDecorator decorator = new DoorHandlerDecorator(doorHandler);
+        decorator.saveDoorV1_1(new DoorInfo());
+        log.info(doorHandler.toString());
         String resp = doorHandler.saveDoor(new DoorInfo());
         return new ResponseObject<>(resp);
     }

@@ -4,7 +4,7 @@ import com.stupid.common.api.dev.dict.DoorTypeEnum;
 import com.stupid.dev.entity.door.po.DoorInfo;
 import com.stupid.dev.entity.door.po.KeyIncInfo;
 import com.stupid.dev.entity.door.po.OpenLogInfo;
-import com.stupid.dev.entity.door.handler.AbstractHandler;
+import com.stupid.dev.entity.door.handler.AbstractDoorHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class HJv2_0DoorHandler extends AbstractHandler {
+public class HJv2_0DoorHandler extends AbstractDoorHandler {
 
     @Override
     public boolean isSupport(String productType) {

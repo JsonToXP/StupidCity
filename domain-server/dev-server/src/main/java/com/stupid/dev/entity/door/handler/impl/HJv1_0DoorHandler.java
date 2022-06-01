@@ -3,7 +3,7 @@ package com.stupid.dev.entity.door.handler.impl;
 import com.stupid.common.api.dev.dict.DoorTypeEnum;
 import com.stupid.dev.entity.door.po.DoorInfo;
 import com.stupid.dev.entity.door.po.KeyIncInfo;
-import com.stupid.dev.entity.door.handler.AbstractHandler;
+import com.stupid.dev.entity.door.handler.AbstractDoorHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Service
 @Slf4j
-public class HJv1_0DoorHandler extends AbstractHandler {
+public class HJv1_0DoorHandler extends AbstractDoorHandler {
 
     /**
      * 策略判断

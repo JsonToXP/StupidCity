@@ -11,9 +11,10 @@ import java.util.List;
 /**
  * 模板设计模式
  * 源码例子：AbstractQueuedSynchronized
+ * 适合对全部厂商原有方法做增强
  */
 @Slf4j
-public class AbstractHandler implements IDoorService {
+public class AbstractDoorHandler implements IDoorService {
 
     @Override
     public boolean isSupport(String productType) {
