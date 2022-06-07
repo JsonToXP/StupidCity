@@ -1,2 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.stupid.common.core.toolkit.SpringToolkit
+  com.stupid.common.core.toolkit.SpringBeanToolkit,\
+  com.stupid.common.core.toolkit.SpringContextToolkit,\
+  com.stupid.common.core.config.ThreadPoolConfig

@@ -1,6 +1,5 @@
 package com.stupid.dev.service.impl;
 
-import com.stupid.common.api.user.vo.UserVO;
 import com.stupid.dev.dao.repository.DoorRepository;
 import com.stupid.dev.entity.door.po.DoorInfo;
 import com.stupid.common.api.dev.vo.DoorVO;
@@ -13,6 +12,7 @@ import org.apache.skywalking.apm.toolkit.trace.Tags;
 import org.apache.skywalking.apm.toolkit.trace.Trace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 /**
  * 门禁机服务
@@ -29,6 +29,9 @@ public class DeviceServiceImpl implements IDeviceService {
 
     @Autowired
     private FeignReposity feignReposity;
+
+    @Autowired
+    private ThreadService threadService;
 
     /**
      * 添加门禁机
@@ -50,11 +53,14 @@ public class DeviceServiceImpl implements IDeviceService {
      */
     @Override
     public DoorVO queryDoorInfo(Long id) {
+
+        threadService.getStrAsync();
+        System.out.println(Thread.currentThread().getName());
         DoorInfo doorInfo = doorRepository.queryDoorInfo(id);
         DoorVO doorVO = beanConvert.doorPO2VO(doorInfo);
         //查询用户信息
-        UserVO userVO = feignReposity.queryUserInfoFromUserServer(doorInfo.getCreateUser());
-        doorVO.setCreateUser(userVO.getName());
+//        UserVO userVO = feignReposity.queryUserInfoFromUserServer(doorInfo.getCreateUser());
+//        doorVO.setCreateUser(userVO.getName());
         return doorVO;
     }
 

@@ -1,6 +1,6 @@
 package com.stupid.common.redis.entity.bean;
 
-import com.stupid.common.core.toolkit.SpringToolkit;
+import com.stupid.common.core.toolkit.SpringBeanToolkit;
 import com.stupid.common.redis.entity.dict.LuaScriptEnum;
 import com.stupid.common.redis.service.LuaScriptService;
 import lombok.Data;
@@ -32,8 +32,8 @@ public class TokenBucket {
         this.maxToken = maxToken;
         this.secToken = secToken;
 
-        this.redisTemplate = SpringToolkit.getBean("redisTemplate",RedisTemplate.class);
-        this.luaScriptService = SpringToolkit.getBean(LuaScriptService.class);
+        this.redisTemplate = SpringBeanToolkit.getBean("redisTemplate",RedisTemplate.class);
+        this.luaScriptService = SpringBeanToolkit.getBean(LuaScriptService.class);
         // 调用初始化方法
         init();
     }

@@ -1,4 +1,4 @@
-package com.stupid.dev.infrastructure.toolkit;
+package com.stupid.common.core.toolkit;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
@@ -6,7 +6,7 @@ import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SpringToolkit implements BeanFactoryAware {
+public class SpringBeanToolkit implements BeanFactoryAware {
 
     private static BeanFactory beanFactory;
 
@@ -16,7 +16,7 @@ public class SpringToolkit implements BeanFactoryAware {
      */
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        SpringToolkit.beanFactory = beanFactory;
+        SpringBeanToolkit.beanFactory = beanFactory;
     }
 
     /**
@@ -24,5 +24,9 @@ public class SpringToolkit implements BeanFactoryAware {
      */
     public static <T> T getBean(Class c){
         return (T) beanFactory.getBean(c);
+    }
+
+    public static <T> T getBean(String name,Class c){
+        return (T) beanFactory.getBean(name,c);
     }
 }

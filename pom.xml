@@ -13,6 +13,7 @@
         <module>common-toolkit</module>
         <module>domain-server</module>
         <module>gateway-server</module>
+        <module>common-demo</module>
     </modules>
 
     <properties>

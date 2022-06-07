@@ -29,11 +29,11 @@ public class RedisConfig {
         ObjectMapper om = new ObjectMapper();
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         jsonSerializer.setObjectMapper(om);
-        //key序列化
+        //string k-v序列化
         template.setKeySerializer(stringSerializer);
-        //value序列化
         template.setValueSerializer(jsonSerializer);
-        //value hashmap序列化
+        //hash k-v序列化
+        template.setHashKeySerializer(stringSerializer);
         template.setHashValueSerializer(jsonSerializer);
         return template;
     }
