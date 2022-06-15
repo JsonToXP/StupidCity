@@ -1,5 +1,6 @@
 package com.stupid.dev.service.impl;
 
+import com.stupid.common.mq.producer.MsgProducer;
 import com.stupid.dev.dao.repository.DoorRepository;
 import com.stupid.dev.entity.door.po.DoorInfo;
 import com.stupid.common.api.dev.vo.DoorVO;
@@ -54,6 +55,8 @@ public class DeviceServiceImpl implements IDeviceService {
     @Override
     public DoorVO queryDoorInfo(Long id) {
 
+        //推送mq消息
+        MsgProducer.sendMsgSync("Topic001","Tag0610","AO202206101234","hello");
         threadService.getStrAsync();
         System.out.println(Thread.currentThread().getName());
         DoorInfo doorInfo = doorRepository.queryDoorInfo(id);

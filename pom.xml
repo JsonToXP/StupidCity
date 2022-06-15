@@ -33,11 +33,14 @@
         <common.core.version>1.0-SNAPSHOT</common.core.version>
         <common.redis.version>1.0-SNAPSHOT</common.redis.version>
         <common.log.version>1.0-SNAPSHOT</common.log.version>
+        <common.mq.version>1.0-SNAPSHOT</common.mq.version>
         <api.core.version>1.0-SNAPSHOT</api.core.version>
         <api.dev.version>1.0-SNAPSHOT</api.dev.version>
         <api.user.version>1.0-SNAPSHOT</api.user.version>
         <api.area.version>1.0-SNAPSHOT</api.area.version>
         <redisson.version>3.14.1</redisson.version>
+        <rocketmq.starter.version>2.0.4</rocketmq.starter.version>
+        <rocketmq.version>4.7.0</rocketmq.version>
     </properties>
 
     <dependencyManagement>
@@ -90,6 +93,18 @@
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
                 <version>${redisson.version}</version>
+            </dependency>
+            <!-- rocketmq starter -->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq.starter.version}</version>
+            </dependency>
+            <!-- rocketmq -->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>${rocketmq.version}</version>
             </dependency>
 
             <!-- lombok -->
@@ -151,6 +166,12 @@
                 <groupId>org.stupid</groupId>
                 <artifactId>common-redis</artifactId>
                 <version>${common.redis.version}</version>
+            </dependency>
+            <!-- common mq -->
+            <dependency>
+                <groupId>org.stupid</groupId>
+                <artifactId>common-mq</artifactId>
+                <version>${common.mq.version}</version>
             </dependency>
             <!-- common log -->
             <dependency>

@@ -61,6 +61,11 @@
             <groupId>org.stupid</groupId>
             <artifactId>common-redis</artifactId>
         </dependency>
+        <!-- common mq -->
+        <dependency>
+            <groupId>org.stupid</groupId>
+            <artifactId>common-mq</artifactId>
+        </dependency>
 
         <!-- lombok -->
         <dependency>

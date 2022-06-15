@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    com.stupid.common.mq.producer.MsgProducer,\
+    com.stupid.common.mq.consumer.PushConsumer
